@@ -1,0 +1,7 @@
+package com.example.HMS.Pharmacy;
+
+import org.springframework.stereotype.Service;
+
+@Service
+public class PharmacyService {
+}
