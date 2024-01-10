@@ -39,6 +39,7 @@ const ViewAppointments = () => {
         fetchAllAppointmentsByUser(claims.userId)
             .then((response) => {
                 setAppointments(response.data)
+
                 {
                     appointments.map((pool, index) => {
                                 if (pool.appointmentStatus == "Used"){
@@ -69,7 +70,10 @@ const ViewAppointments = () => {
         {
             title:'Reference',
             dataIndex:'reference',
-            key:'reference'
+            key:'reference',
+            render: (_, record) =>{
+                return record?.appointmentPayment?.reference
+            }
         },
         {
             title:'Date',
@@ -106,8 +110,6 @@ const ViewAppointments = () => {
 
     ]
 
-    console.log(isDisabled)
-
     return(
         <>
 
@@ -120,7 +122,6 @@ const ViewAppointments = () => {
                     style={{width:'80%'}}
                 ></Table>
             </center>
-
 
 <br></br>
    <Button>CLICK TO EXTRACT</Button>

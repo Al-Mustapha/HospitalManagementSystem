@@ -11,6 +11,7 @@ import Homepage from "./Components/Homepage";
 import BookAppointment from "./Components/BookAppointment";
 import AppointmentDetails from "./Components/HomepageComponents/AppointmentDetails";
 import ViewAppointments from "./Components/ViewAppointments";
+import UserProfile from './Components/UserProfile'
 
 
 function Root(){
@@ -28,6 +29,7 @@ function Root(){
                 <Route path="/bookAppointment" element={<BookAppointment/>}></Route>
                 <Route path="/appointmentDetails/:appointmentId" element={<AppointmentDetails/>}></Route>
                 <Route path="/appointments/fetchUserAppointments/:patientId" element={<ViewAppointments/>}></Route>
+                <Route path="/patient/profile/:userId" element={<UserProfile/>}></Route>
             </Routes>
         </div>
     )

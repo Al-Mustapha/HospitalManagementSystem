@@ -72,4 +72,11 @@ export const fetchAllAppointmentsByUser = (patientId) =>
         }
     });
 
+export const viewUserProfile = (userId) =>
+    axios.get("http://localhost:8082/patient/viewProfile/" + userId, {
+        headers: {
+            Authorization: "Bearer " +token
+        }
+    });
+
 

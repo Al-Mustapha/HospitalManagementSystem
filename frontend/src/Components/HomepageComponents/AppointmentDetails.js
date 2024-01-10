@@ -15,6 +15,7 @@ const AppointmentDetails = () => {
     const [appointmentStatus, setAppointmentStatus] = useState("");
     const [appointmentPaymentStatus, setAppointmentPaymentStatus] = useState("");
     const [patient, setPatient] = useState(null);
+    const [appointmentPayment, setappointmentPayment] = useState(null);
 
 
     const [appointmentDetails, setAppointmentDetails] = useState({
@@ -23,7 +24,8 @@ const AppointmentDetails = () => {
         appointmentTime: "",
         appointmentStatus: "",
         paymentStatus: "",
-        patientId: null
+        patientId: null,
+        appointmentPayment: null
     });
 
     const fetchAppointmentDetails = () => {
@@ -37,6 +39,7 @@ const AppointmentDetails = () => {
                     setAppointmentStatus(data.appointmentStatus)
                     setAppointmentPaymentStatus(data.paymentStatus)
                     setPatient(data.patientId)
+                    setappointmentPayment(data.appointmentPayment)
                 }
             )
             .then(error => console.log(error))

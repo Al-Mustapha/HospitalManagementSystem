@@ -8,6 +8,7 @@ const OurTeam = () => {
     return(
         <>
             <h1>Our Team</h1>
+            <hr style={{width:'100px', borderColor:'blue'}}></hr>
         <div>
             <div style={{display:'flex', alignItems:'center', justifyContent:'center'}}>
                 <div style={{margin:'40px'}}>

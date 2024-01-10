@@ -34,14 +34,12 @@ const Login = () => {
             .then(error => console.log(error));
     }
 
-    if (responseStatus) {
-        navigate("/patientHomepage");
-    }
-
-
-
     const resetPassword = () => {
         navigate("/resetPatientPassword");
+    }
+
+    if (responseStatus) {
+        navigate("/patientHomepage");
     }
 
     return(
@@ -132,6 +130,8 @@ const Login = () => {
             <a onClick={resetPassword}>Forgotten Password? Click here</a>
         </>
     )
+
 }
+
 
 export default Login;

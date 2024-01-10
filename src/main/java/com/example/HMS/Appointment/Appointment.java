@@ -5,6 +5,7 @@ import com.example.HMS.Security.AppointmentPaymentStatus;
 import com.example.HMS.Users.Patient.Patient;
 import jakarta.persistence.*;
 import lombok.Data;
+import lombok.Value;
 
 @Entity
 @Table(name = "appointment")
@@ -33,4 +34,6 @@ public class Appointment {
     )
     private Patient patient;
 
+    @OneToOne()
+    private AppointmentPayment appointmentPayment;
 }
