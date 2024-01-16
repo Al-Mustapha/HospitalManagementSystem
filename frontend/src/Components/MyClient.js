@@ -79,4 +79,13 @@ export const viewUserProfile = (userId) =>
         }
     });
 
+export const updatePatientProfile = (id, PatientModel) =>
+    axios.put("http://localhost:8082/patient/editProfile/" + id, PatientModel,
+        {
+            headers: {
+                Authorization: "Bearer " + token
+            }
+        }
+        );
+
 

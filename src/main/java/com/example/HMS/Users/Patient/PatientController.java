@@ -34,8 +34,8 @@ public class PatientController {
     }
 
     @PutMapping("editProfile/{id}")
-    public String editProfile(@PathVariable("id") Long id, @RequestBody Patient patient){
-        patientService.editProfile(id, patient);
+    public String editProfile(@PathVariable("id") Long id, @RequestBody PatientModel patientModel){
+        patientService.editProfile(id, patientModel);
         return "Profile updated successfully";
     }
 

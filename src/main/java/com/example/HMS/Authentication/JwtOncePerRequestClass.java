@@ -31,7 +31,6 @@ public class JwtOncePerRequestClass extends OncePerRequestFilter {
         String token;
         String user;
 
-
         try {
             String header = request.getHeader("authorization");
             if (header == null || !header.startsWith("Bearer")) {
@@ -56,7 +55,6 @@ public class JwtOncePerRequestClass extends OncePerRequestFilter {
         } catch (UsernameNotFoundException e) {
             throw new RuntimeException(e);
         }
-
-        filterChain.doFilter(request, response);
+     filterChain.doFilter(request, response);
     }
 }

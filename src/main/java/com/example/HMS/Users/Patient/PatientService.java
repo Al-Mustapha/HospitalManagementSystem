@@ -77,19 +77,19 @@ public class PatientService {
         return patientRepository.findById(id).get();
     }
 
-    public void editProfile(Long id, Patient patient) {
+    public void editProfile(Long id, PatientModel patientModel) {
         Patient pat = patientRepository.findById(id).get();
-        pat.setFirstName(patient.getFirstName());
-        pat.setMiddleName(patient.getMiddleName());
-        pat.setLastName(patient.getLastName());
-        pat.setDateOfBirth(patient.getDateOfBirth());
-        pat.setEmail(patient.getEmail());
-        pat.setCountry(patient.getCountry());
-        pat.setState(patient.getState());
-        pat.setLga(patient.getLga());
-        pat.setGender(patient.getGender());
-        pat.setAddress(patient.getAddress());
-        pat.setPhoneNumber(patient.getPhoneNumber());
+        pat.setFirstName(patientModel.getFirstName());
+        pat.setMiddleName(patientModel.getMiddleName());
+        pat.setLastName(patientModel.getLastName());
+        pat.setDateOfBirth(patientModel.getDateOfBirth());
+        pat.setEmail(patientModel.getEmail());
+        pat.setCountry(patientModel.getCountry());
+        pat.setState(patientModel.getState());
+        pat.setLga(patientModel.getLga());
+        pat.setGender(patientModel.getGender());
+        pat.setAddress(patientModel.getAddress());
+        pat.setPhoneNumber(patientModel.getPhoneNumber());
         pat.setRole(valueOf(PATIENT.name()));
         patientRepository.save(pat);
     }

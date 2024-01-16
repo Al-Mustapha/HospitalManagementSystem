@@ -1,13 +1,15 @@
-import {useParams} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {viewAppointmentDetails, initiatePayment} from "../MyClient";
 import {Button, Table} from "antd";
-
+import {useHistory} from 'react-router-dom'
 const AppointmentDetails = () => {
 
     const {appointmentId} = useParams();
 
-    const [details, setDetails] = useState({});
+    const [checkoutLinkCreatedSuccessfully, setCheckOutLinkCreatedSuccessfully] = useState(false);
+
+    const navigate = useNavigate();
 
     const [appId, setAppointmentId] = useState(appointmentId);
     const [appointmentDate, setAppointmentDate] = useState("");
@@ -15,7 +17,7 @@ const AppointmentDetails = () => {
     const [appointmentStatus, setAppointmentStatus] = useState("");
     const [appointmentPaymentStatus, setAppointmentPaymentStatus] = useState("");
     const [patient, setPatient] = useState(null);
-    const [appointmentPayment, setappointmentPayment] = useState(null);
+    const [appointmentPayment, setAppointmentPayment] = useState(null);
 
 
     const [appointmentDetails, setAppointmentDetails] = useState({
@@ -28,6 +30,13 @@ const AppointmentDetails = () => {
         appointmentPayment: null
     });
 
+    const [checkout, setCheckout] = useState({
+        access_code: "",
+        authorization_url: "",
+        reference: ""
+    });
+
+
     const fetchAppointmentDetails = () => {
         viewAppointmentDetails(appointmentId)
             .then(response => response.json())
@@ -39,7 +48,7 @@ const AppointmentDetails = () => {
                     setAppointmentStatus(data.appointmentStatus)
                     setAppointmentPaymentStatus(data.paymentStatus)
                     setPatient(data.patientId)
-                    setappointmentPayment(data.appointmentPayment)
+                    setAppointmentPayment(data.appointmentPayment)
                 }
             )
             .then(error => console.log(error))
@@ -49,13 +58,31 @@ const AppointmentDetails = () => {
         fetchAppointmentDetails()
     },[])
 
-    const appointmentProperties = appointmentDetails;
-
+    // const history = useHistory();
 
     const pay = () => {
         initiatePayment(appId)
-            .then(response => console.log(response))
+            .then((response) => {
+                setCheckout(response.data)
+                console.log(response)
+
+                // if (checkout.message == "Authorization URL created"){
+                //     setCheckOutLinkCreatedSuccessfully(true)
+                // }
+                // history.push(checkout.data.authorization_url);
+
+            }
+        )
     }
+
+
+    if (checkout.message == "Authorization URL created"){
+        window.location.href=checkout.data.authorization_url
+    }
+
+    // if (checkoutLinkCreatedSuccessfully){
+    //     window.location.href=checkout.data.authorization_url
+    // }
 
     return(
         <div style={{marginTop:'50px'}}>
